@@ -56,7 +56,7 @@ int main(void)
 	/***************************/
 	/** MAIN ACQUISITION LOOP **/
 	/***************************/
-	for (trace_counts=0; trace_counts<1; trace_counts++)
+	for (trace_counts=0; trace_counts<100; trace_counts++)
 	{
 		/*Set trigger, begin acquisition when condition is met*/
 		osc_fpga_arm_trigger(); //start acquiring, incrementing write pointer
