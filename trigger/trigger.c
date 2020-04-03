@@ -93,7 +93,7 @@ int main(void)
 		int i;
 		int ptr;
 		int counterA = 0;
-		int counterB = 0;
+		//int counterB = 0;
 		for (i=0; i < N; i++) {
 			ptr = (trig_ptr+i)%BUF;
 
