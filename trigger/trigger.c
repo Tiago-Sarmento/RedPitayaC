@@ -93,42 +93,43 @@ int main(void)
 		int i;
 		int ptr;
 		int counterA = 0;
-		//int counterB = 0;
+		int counterB = 0;
 		for (i=0; i < N; i++) {
 			ptr = (trig_ptr+i)%BUF;
 
 			if (cha_signal[ptr]>=8192){ // properly display negative values fix
 				//        		printf("%d ",cha_signal[ptr]-16384);
-				fprintf(fp, "%d, ", cha_signal[ptr]-16384);
+				//fprintf(fp, "%d, ", cha_signal[ptr]-16384);
+				
 			}
 			else{
 				//        		printf("%d ",cha_signal[ptr]);
-				fprintf(fp, "%d, ", cha_signal[ptr]);;
-// 				if(cha_signal[ptr] > 500){
-// 					counterA++;
-// 				}
+				//fprintf(fp, "%d, ", cha_signal[ptr]);;
+ 				if(cha_signal[ptr] > 500){
+ 					counterA++;
+ 				}
 			}
-// 			if (chb_signal[ptr]>=8192){ // properly display negative values fix
-// 				//        		printf("%d ",cha_signal[ptr]-16384);
-// 				//fprintf(fp, "%d\n", chb_signal[ptr]-16384);
-// 			}
-// 			else{
-// 				//        		printf("%d ",cha_signal[ptr]);
-// 				//fprintf(fp, "%d\n", chb_signal[ptr]);;
-// 				if(chb_signal[ptr] > 500){
-// 					counterB++;
-// 				}
-// 			}  
+ 			if (chb_signal[ptr]>=8192){ // properly display negative values fix
+ 				//        		printf("%d ",cha_signal[ptr]-16384);
+ 				//fprintf(fp, "%d\n", chb_signal[ptr]-16384);
+ 			}
+ 			else{
+ 				//        		printf("%d ",cha_signal[ptr]);
+ 				//fprintf(fp, "%d\n", chb_signal[ptr]);;
+ 				if(chb_signal[ptr] > 500){
+ 					counterB++;
+ 				}
+ 			}  
 
 			}
 		if (counterA < 3000){
 			printf("failedA pulse\n");
 		} else{ printf("goodA pulse\n"); }
-// 		if (counterB < 3000){
-// 			printf("failedB pulse\n");
-// 		} else{ printf("goodB pulse\n");}
-		//printf("counterA = %i\n",counterA);
-		//printf("counterB = %i\n",counterB);
+ 		if (counterB < 3000){
+ 			printf("failedB pulse\n");
+ 		} else{ printf("goodB pulse\n");}
+		printf("counterA = %i\n",counterA);
+		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
 	}
