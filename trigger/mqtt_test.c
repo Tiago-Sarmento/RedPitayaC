@@ -3,9 +3,9 @@
 #include "string.h"
 #include "MQTTClient.h"
 
-#define ADDRESS     "tcp://localhost:1883"
+#define ADDRESS     "test.mosquitto.org"
 #define CLIENTID    "ExampleClientPub"
-#define TOPIC       "MQTT Examples"
+#define TOPIC       "MakerIOTopicReceipt"
 #define PAYLOAD     "Hello World!"
 #define QOS         1
 #define TIMEOUT     10000L
