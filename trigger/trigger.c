@@ -110,11 +110,11 @@ int main(void)
 			}
 			if (chb_signal[ptr]>=8192){ // properly display negative values fix
 				//        		printf("%d ",cha_signal[ptr]-16384);
-				fprintf(fp, "%d\n", chb_signal[ptr]-16384);
+				//fprintf(fp, "%d\n", chb_signal[ptr]-16384);
 			}
 			else{
 				//        		printf("%d ",cha_signal[ptr]);
-				fprintf(fp, "%d\n", chb_signal[ptr]);;
+				//fprintf(fp, "%d\n", chb_signal[ptr]);;
 				if(chb_signal[ptr] > 500){
 					counterB++;
 				}
@@ -127,9 +127,10 @@ int main(void)
 		if (counterB < 3000){
 			printf("failedB pulse\n");
 		} else{ printf("goodB pulse\n");}
-		printf("counterA = %i\n",counterA);
-		printf("counterB = %i\n",counterB);
+		//printf("counterA = %i\n",counterA);
+		//printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
+		printf("iteration = %i", trace_counts);
 	}
 
 	// cleaning up all nice like mommy taught me
