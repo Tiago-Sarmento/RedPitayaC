@@ -140,7 +140,7 @@ int main(void)
 		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
-		printf("time is = %lu\n", (unsigned long)time(NULL))
+		printf("time is = %lu\n", (unsigned long)time(NULL));
 		break;
 	}
 
