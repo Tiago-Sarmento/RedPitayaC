@@ -30,6 +30,7 @@ const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536]
 
 int main(void) 
 {
+	mqtt_connect();
 	char payload[] = "trigger";
 	printf("starting process");
 	send_mqtt(payload);
@@ -139,10 +140,12 @@ int main(void)
 		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
+		break;
 	}
 
 	// cleaning up all nice like mommy taught me
 	fclose(fp);
 	osc_fpga_exit();
+	mqtt_disconnect();
 	return 0;
 }
