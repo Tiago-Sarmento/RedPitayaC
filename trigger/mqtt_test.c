@@ -3,14 +3,9 @@
 #include "string.h"
 #include "MQTTClient.h"
 
-#define ADDRESS     "test.mosquitto.org"
-#define CLIENTID    "ExampleClientPub"
-#define TOPIC       "MakerIOTopicReceipt"
-#define PAYLOAD     "Hello World!"
-#define QOS         1
-#define TIMEOUT     10000L
+#include "mqtt_test.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[], char* payload[])
 {
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
@@ -28,8 +23,8 @@ int main(int argc, char* argv[])
         printf("Failed to connect, return code %d\n", rc);
         exit(-1);
     }
-    pubmsg.payload = PAYLOAD;
-    pubmsg.payloadlen = strlen(PAYLOAD);
+    pubmsg.payload = payload;
+    pubmsg.payloadlen = strlen(payload);
     pubmsg.qos = QOS;
     pubmsg.retained = 0;
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
