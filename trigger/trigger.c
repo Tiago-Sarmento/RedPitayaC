@@ -136,10 +136,11 @@ int main(void)
  		} else{ printf("goodB pulse\n");}
 		printf("counterA = %i\n",counterA);
 		sprintf(payload,"%d",counterA);
-		mqtt_send(payload);
+		mqtt_send("{\"messageid\": 1345, \"value\": 100, \"timestamp\": 1575904457}");
 		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
+		
 		printf("time is = %lu\n", (unsigned long)time(NULL));
 		break;
 	}
