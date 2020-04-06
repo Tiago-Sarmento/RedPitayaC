@@ -10,4 +10,4 @@
 #define QOS         1
 #define TIMEOUT     10000L
 
-int send_mqtt(int argc, char* argv[]);
+int send_mqtt(char* payload);
