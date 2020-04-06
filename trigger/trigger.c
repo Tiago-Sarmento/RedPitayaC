@@ -31,7 +31,7 @@ const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536]
 int main(void) 
 {
 	mqtt_connect();
-	char payload[] = "trigger";
+	char payload[100] = "trigger";
 	printf("starting process");
 	mqtt_send(payload);
 	// initialization
