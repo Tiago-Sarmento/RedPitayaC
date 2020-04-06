@@ -135,10 +135,10 @@ int main(void)
  			printf("failedB pulse\n");
  		} else{ printf("goodB pulse\n");}
 		printf("counterA = %i\n",counterA);
-		char *payloadMain[];
-		sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",counterA,(unsigned)time(NULL));
+		//char *payloadMain[];
+		//sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",counterA,(unsigned)time(NULL));
 		//sprintf(payload,"&d",counterA);
-		mqtt_send(payloadMain);
+		//mqtt_send(payloadMain);
 		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
