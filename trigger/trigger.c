@@ -26,11 +26,11 @@ const int BUF = 16*1024;
 const int N = 5000; 			// desired length of trace (1,..., 16383)
 const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536]
 
-char* payload[];
+
 
 int main(void) 
 {
-	payload = "trigger";
+	char payload[] = "trigger";
 	printf("starting process");
 	send_mqtt(payload);
 	// initialization
