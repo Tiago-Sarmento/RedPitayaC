@@ -5,7 +5,7 @@
 
 #include "mqtt_test.h"
 
-int send_mqtt(char[] payload)
+int send_mqtt(char *payload)
 {
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
