@@ -23,12 +23,14 @@ void mqtt_connect(void)
         printf("Failed to connect, return code %d\n", rc);
         exit(-1);
     }
+    else { printf("connected to MQTT");}
 }
 
 void mqtt_disconnect(void)
 {
     MQTTClient_disconnect(client, 10000);
     MQTTClient_destroy(&client);
+    printf("Disconnected MQTT");   
 }
 
 
