@@ -10,4 +10,6 @@
 #define QOS         1
 #define TIMEOUT     10000L
 
-int send_mqtt(char *payload);
+void mqtt_connect(void);
+void mqtt_disconnect(void);
+int mqtt_send(char *payload);
