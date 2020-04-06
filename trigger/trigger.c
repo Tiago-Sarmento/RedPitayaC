@@ -18,6 +18,7 @@
 #include <string.h>
 #include <stddef.h>
 #include <sys/param.h>
+#include "mqtt_test.h"
 #include "fpga_osc.h"
 
 //Buffer depth 
