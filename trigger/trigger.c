@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stddef.h>
 #include <sys/param.h>
-//#include "mqtt_test.h"
+#include "mqtt_test.h"
 #include "fpga_osc.h"
 
 //Buffer depth 
@@ -30,10 +30,10 @@ const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536]
 
 int main(void) 
 {
-	//mqtt_connect();
+	mqtt_connect();
 	char payload[] = "trigger";
 	printf("starting process");
-	//mqtt_send(payload);
+	mqtt_send(payload);
 	// initialization
 	int start = osc_fpga_init(); 
 	if(start) {
@@ -149,6 +149,6 @@ int main(void)
 	// cleaning up all nice like mommy taught me
 	fclose(fp);
 	osc_fpga_exit();
-	//mqtt_disconnect();
+	mqtt_disconnect();
 	return 0;
 }
