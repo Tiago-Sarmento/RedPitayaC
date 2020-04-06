@@ -5,7 +5,7 @@
 
 #include "mqtt_test.h"
 
-int send_mqtt(char* payload)
+int send_mqtt(char[] payload)
 {
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
@@ -23,8 +23,8 @@ int send_mqtt(char* payload)
         printf("Failed to connect, return code %d\n", rc);
         exit(-1);
     }
-    pubmsg.payload = *argv[0];
-    pubmsg.payloadlen = strlen(*argv[0]);
+    pubmsg.payload = payload;
+    pubmsg.payloadlen = strlen(payload);
     pubmsg.qos = QOS;
     pubmsg.retained = 0;
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
