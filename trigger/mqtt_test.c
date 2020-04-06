@@ -30,7 +30,7 @@ int send_mqtt(int argc, char* argv[], char* payload[])
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
     printf("Waiting for up to %d seconds for publication of %s\n"
             "on topic %s for client with ClientID: %s\n",
-            (int)(TIMEOUT/1000), PAYLOAD, TOPIC, CLIENTID);
+            (int)(TIMEOUT/1000), payload, TOPIC, CLIENTID);
     rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
     printf("Message with delivery token %d delivered\n", token);
     MQTTClient_disconnect(client, 10000);
