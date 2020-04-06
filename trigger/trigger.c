@@ -138,7 +138,7 @@ int main(void)
 		//char *payloadMain[];
 		//sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",counterA,(unsigned)time(NULL));
 		sprintf(payload,"&d",counterA);
-		mqtt_send(payload);
+		//mqtt_send(payload);
 		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
