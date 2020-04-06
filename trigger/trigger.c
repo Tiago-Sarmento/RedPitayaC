@@ -32,7 +32,7 @@ int main(void)
 {
 	char payload[] = "trigger";
 	printf("starting process");
-	send_mqtt(&payload);
+	send_mqtt(payload);
 	// initialization
 	int start = osc_fpga_init(); 
 	if(start) {
