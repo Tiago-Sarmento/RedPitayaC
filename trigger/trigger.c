@@ -136,7 +136,7 @@ int main(void)
  		} else{ printf("goodB pulse\n");}
 		printf("counterA = %i\n",counterA);
 		sprintf(payload,"%d",counterA);
-		send_mqtt(payload);
+		mqtt_send(payload);
 		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
