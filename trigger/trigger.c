@@ -31,9 +31,9 @@ const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536]
 int main(void) 
 {
 	mqtt_connect();
-	char payloadInit[] = "trigger";
+	char payload[] = "trigger";
 	printf("starting process");
-	mqtt_send(payloadInit);
+	mqtt_send(payload);
 	// initialization
 	int start = osc_fpga_init(); 
 	if(start) {
@@ -137,8 +137,8 @@ int main(void)
 		printf("counterA = %i\n",counterA);
 		//char *payloadMain[];
 		//sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",counterA,(unsigned)time(NULL));
-		//sprintf(payload,"&d",counterA);
-		//mqtt_send(payloadMain);
+		sprintf(payload,"&d",counterA);
+		mqtt_send(payload);
 		printf("counterB = %i\n",counterB);
 		fprintf(fp, "\n");
 		printf("iteration = %i", trace_counts);
