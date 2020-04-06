@@ -5,7 +5,7 @@
 
 #include "mqtt_test.h"
 
-int send_mqtt(char *payload)
+void mqtt_connect(void)
 {
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
@@ -23,6 +23,17 @@ int send_mqtt(char *payload)
         printf("Failed to connect, return code %d\n", rc);
         exit(-1);
     }
+}
+
+void mqtt_disconnect(void)
+{
+    MQTTClient_disconnect(client, 10000);
+    MQTTClient_destroy(&client);
+}
+
+
+int mqtt_send(char *payload)
+{
     pubmsg.payload = payload;
     pubmsg.payloadlen = strlen(payload);
     pubmsg.qos = QOS;
@@ -31,9 +42,7 @@ int send_mqtt(char *payload)
     //printf("Waiting for up to %d seconds for publication of %s\n"
     //        "on topic %s for client with ClientID: %s\n",
     //        (int)(TIMEOUT/1000), payload, TOPIC, CLIENTID);
-    rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
-    printf("Message with delivery token %d delivered\n", token);
-    MQTTClient_disconnect(client, 10000);
-    MQTTClient_destroy(&client);
+    //rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
+    //printf("Message with delivery token %d delivered\n", token);
     return rc;
 }
