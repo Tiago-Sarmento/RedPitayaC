@@ -39,7 +39,7 @@ int mqtt_send(char *payload)
 {
     pubmsg.payload = payload;
     pubmsg.payloadlen = strlen(payload);
-    pubmsg.qos = QOS0;
+    pubmsg.qos = 0;
     pubmsg.retained = 0;
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
     //printf("Waiting for up to %d seconds for publication of %s\n"
