@@ -53,6 +53,7 @@ int main(void)
 	osc_fpga_reset();
 
 	// define initial parameters
+	int twosecondloops; 		// 
 	int trace_counts; 		// counts how many traces were sampled in for loop
 	int trig_ptr; 			// trigger pointer shows memory adress where trigger was met
 	int trig_test;			// trigger test checks if writing the trace has completed yet
@@ -62,7 +63,7 @@ int main(void)
 	/***************************/
 	/** MAIN ACQUISITION LOOP **/
 	/***************************/
-	for(twosecondloopes=0; twosecondloops<5;twosecondloops++)
+	for(twosecondloops=0; twosecondloops<5;twosecondloops++)
 	{
 		for (trace_counts=0; trace_counts<100; trace_counts++)
 		{
