@@ -24,6 +24,7 @@ void mqtt_connect(void)
         exit(-1);
     }
     else { printf("connected to MQTT");}
+    MQTTClient_setCallbacks();
 }
 
 void mqtt_disconnect(void)
