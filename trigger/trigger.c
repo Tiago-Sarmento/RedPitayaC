@@ -146,6 +146,7 @@ int main(void)
 			printf("iteration = %i", trace_counts);
 			printf("time is = %u\n", (unsigned)time(NULL));
 		}
+		mqtt_send(twosecondloops);
 	}
 		//mqtt_send();
 	// cleaning up all nice like mommy taught me
