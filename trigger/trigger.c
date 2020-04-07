@@ -63,7 +63,7 @@ int main(void)
 	/***************************/
 	/** MAIN ACQUISITION LOOP **/
 	/***************************/
-	for(twosecondloops=0; twosecondloops<5;twosecondloops++)
+	for(twosecondloops=0; twosecondloops<20;twosecondloops++)
 	{
 		for (trace_counts=0; trace_counts<100; trace_counts++)
 		{
