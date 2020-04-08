@@ -1,3 +1,6 @@
+// code adapted from example given by paho in https://www.eclipse.org/paho/clients/c/
+// uses paho mqtt c library
+
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
@@ -35,11 +38,11 @@ void mqtt_disconnect(void)
 }
 
 
-int mqtt_send(char *payload)
+int mqtt_send(char *message)
 {
-    pubmsg.payload = payload;
-    pubmsg.payloadlen = strlen(payload);
-    pubmsg.qos = 0; // lowest quality of service ensures high speed messaging (0 - 'fire and forget')
+    pubmsg.payload = message;
+    pubmsg.payloadlen = strlen(message);
+    pubmsg.qos = 0; // lowest quality of service ensures high speed messaging (0 - 'fire and forget') - set to 1 or 2 for higher assurangce
     pubmsg.retained = 0;
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
     //printf("Waiting for up to %d seconds for publication of %s\n"
