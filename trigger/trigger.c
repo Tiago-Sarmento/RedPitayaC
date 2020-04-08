@@ -1,3 +1,5 @@
+// taken from https://github.com/Grozomah/trigger and adapted to use as failed pulse counter
+
 /**
  * $Id: trigger.c peter.ferjancic 2014/11/17 $
  *
@@ -23,14 +25,14 @@
 
 //Buffer depth 
 const int BUF = 16*1024;
-const int N = 5000; 			// desired length of trace (1,..., 16383)
+const int N = 5000; 		// desired length of trace (1,..., 16383)
 const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536]
 
 
 
 int main(void) 
 {
-	mqtt_connect();
+	mqtt_connect(); 
 	char payload[100] = "trigger";
 	printf("starting process");
 	mqtt_send(payload);
@@ -131,6 +133,7 @@ int main(void)
 				}  
 
 				}
+			// pulse failure defined by these conditions
 			if (counterA < 3000){
 				printf("failedA pulse\n");
 			} else{ printf("goodA pulse\n"); }
@@ -138,10 +141,11 @@ int main(void)
 				printf("failedB pulse\n");
 			} else{ printf("goodB pulse\n");}
 			printf("counterA = %i\n",counterA);
-			char *payloadMain[100];
+			char *payloadMain[100]; // allocate excessive memory to avoid memory problems
+			// sprintf copies string into variable
 			sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",counterA,(unsigned)time(NULL));
 			sprintf(payload,"%d",counterA);
-			mqtt_send(payloadMain);
+			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
 			printf("counterB = %i\n",counterB);
 			fprintf(fp, "\n");
 			printf("iteration = %i", trace_counts);
@@ -149,8 +153,7 @@ int main(void)
 		}
 		
 	}
-		//mqtt_send();
-	// cleaning up all nice like mommy taught me
+	// clean up
 	fclose(fp);
 	osc_fpga_exit();
 	mqtt_disconnect();
