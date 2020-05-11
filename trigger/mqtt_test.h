@@ -7,7 +7,7 @@
 #define CLIENTID    "ExampleClientPub" // unique identifier for the client, can be whatever you like
 #define TOPIC       "MakerIOTopicReceipt" // topic to send message to
 //#define PAYLOAD     "Hello World!"
-#define QOS         1 // quality of service - 0 means fire and forget
+#define QOS         1 // quality of service - 0 means fire and forget - change to suit speed needs
 #define TIMEOUT     10000L
 
 void mqtt_connect(void);
