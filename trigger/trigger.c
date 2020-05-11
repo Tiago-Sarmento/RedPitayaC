@@ -23,16 +23,16 @@
 #include "mqtt_test.h"
 #include "fpga_osc.h"
 
-//Buffer depth 
+//definde buffer properties
 const int BUF = 16*1024;
 const int N = 5000; 		// desired length of trace (1,..., 16383)
-const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536]
+const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536] select from defined values, see fpga_osc.h
 
 
 
 int main(void) 
 {
-	mqtt_connect(); 
+	mqtt_connect(); // from mqtt_test.h
 	char payload[100] = "trigger";
 	printf("starting process");
 	mqtt_send(payload);
@@ -84,7 +84,6 @@ int main(void)
 			//->fpga.osc.h l66
 
 
-			/*Wait for the acquisition to finish = trigger is set to 0*/
 			trig_test=(g_osc_fpga_reg_mem->trig_source); // it gets the above trigger value
 			// if acquistion is not yet completed it should return the number you set above and 0 otherwise
 			while (trig_test!=0) // with this loop the program waits until the acquistion is completed before cont.
@@ -113,7 +112,7 @@ int main(void)
 					//fprintf(fp, "%d, ", cha_signal[ptr]-16384);
 
 				}
-				else{
+				else{ // points with value below 8192 are negative
 					//        		printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d, ", cha_signal[ptr]);;
 					if(cha_signal[ptr] > 500){
