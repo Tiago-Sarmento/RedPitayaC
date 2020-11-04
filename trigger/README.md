@@ -14,14 +14,31 @@ ssh into Red Pitaya https://redpitaya.readthedocs.io/en/latest/developerGuide/os
 
 install Red Pitaya content https://github.com/RedPitaya/RedPitaya/blob/master/Examples/C/README.md
 in short: 
+
 git clone https://github.com/RedPitaya/RedPitaya.git
+
 cd RedPitaya
+
 make api
+
 cat /opt/redpitaya/fpga/fpga_0.94.bit > /dev/xdevcfg
+
+LD_LIBRARY_PATH=/opt/redpitaya/lib
+
 
 install paho-eclipse-mqtt (verify installation by running paho_c_pub, if it recognises then installation successful) https://github.com/eclipse/paho.mqtt.c
 
-clone this directory anywhere under ~ folder 
+cd ~
+
+git clone https://github.com/eclipse/paho.mqtt.c
+
+cd paho.mqtt.c
+
+make
+
+sudo make install
+
+
 
 ## Basic Usage
 
@@ -29,6 +46,9 @@ The failed pulse counter should start running on boot.
 
 To manually run the failed pulse counter as it is, ssh into the red pitaya, navigate to the 'trigger' directory and type ./trigger into the terminal.
 Verify by looking at the channel defined in trigger.c
+
+To compile:
+gcc -o executable trigger.c fpga_osc.c mqtt_test.c -lm -lpaho-mqtt3c
 
 ## Adaptation
 The key script defining the failed pulse counter is trigger.c
@@ -38,6 +58,10 @@ fpga_osc files handle fpga control. Functions used in trigger.c are defined here
 mqtt_test files handle MQTT messaging. Also defines functions. Requires paho.mqtt to be installed to work.
 
 If a file is modified it will need recompiling
+
+
+## Troubleshooting
+'bus error' indicates the FPGA needs loading. Type cat /opt/redpitaya/fpga/fpga_0.94.bit > /dev/xdevcfg
 
 ```
 gcc -lpaho-mqtt3c -lm
