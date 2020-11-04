@@ -20,6 +20,7 @@
 #include <string.h>
 #include <stddef.h>
 #include <sys/param.h>
+#include <time.h>
 #include "mqtt_test.h"
 #include "fpga_osc.h"
 
