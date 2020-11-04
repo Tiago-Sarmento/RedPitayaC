@@ -33,6 +33,7 @@ const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536] select from 
 
 int main(void) 
 {
+	printf("initiated\n");
 	mqtt_connect(); // from mqtt_test.h
 	char payload[100] = "trigger";
 	printf("starting process");
@@ -63,13 +64,16 @@ int main(void)
 	int trigger_voltage= 0; // enter trigger voltage in [V] as parameter [1V...~600 RP units]
 	g_osc_fpga_reg_mem->cha_thr = osc_fpga_cnv_v_to_cnt(trigger_voltage); //sets trigger voltage
 
+	printf("entering loop\n");
 	/***************************/
 	/** MAIN ACQUISITION LOOP **/
 	/***************************/
 	for(twosecondloops=0; twosecondloops<20;twosecondloops++)
 	{
+		printf("two sec\n");
 		for (trace_counts=0; trace_counts<100; trace_counts++)
 		{
+			printf("trace count\n");
 			/*Set trigger, begin acquisition when condition is met*/
 			osc_fpga_arm_trigger(); //start acquiring, incrementing write pointer
 			osc_fpga_set_trigger(0x6); // where do you want your triggering from?
