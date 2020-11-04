@@ -12,6 +12,13 @@ Succesfully runs at 50Hz.
 
 ssh into Red Pitaya https://redpitaya.readthedocs.io/en/latest/developerGuide/os/ssh/ssh.html
 
+install Red Pitaya content https://github.com/RedPitaya/RedPitaya/blob/master/Examples/C/README.md
+in short: 
+git clone https://github.com/RedPitaya/RedPitaya.git
+cd RedPitaya
+make api
+cat /opt/redpitaya/fpga/fpga_0.94.bit > /dev/xdevcfg
+
 install paho-eclipse-mqtt (verify installation by running paho_c_pub, if it recognises then installation successful) https://github.com/eclipse/paho.mqtt.c
 
 clone this directory anywhere under ~ folder 
