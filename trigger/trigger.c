@@ -114,7 +114,7 @@ int main(void)
 			int counterB = 0;
 			for (i=0; i < N; i++) {
 				ptr = (trig_ptr+i)%BUF;
-				printf("cha value, %i", cha_signal[ptr]);
+				printf("cha value, %i \n", cha_signal[ptr]);
 				if (cha_signal[ptr]>=8192){ // properly display negative values fix
 					//        		printf("%d ",cha_signal[ptr]-16384);
 					//fprintf(fp, "%d, ", cha_signal[ptr]-16384);
