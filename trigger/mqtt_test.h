@@ -3,9 +3,9 @@
 #include "string.h"
 #include "MQTTClient.h"
 
-#define ADDRESS     "test.mosquitto.org"   // choose a mqtt broker, such as broker.hive.com
+#define ADDRESS     "icxparrot.isis.rl.ac.uk" //"test.mosquitto.org"   // choose a mqtt broker, such as broker.hive.com
 #define CLIENTID    "ExampleClientPub" // unique identifier for the client, can be whatever you like
-#define TOPIC       "MakerIOTopicReceipt" // topic to send message to
+#define TOPIC       "/vista/values/failed_pulse_count"//"MakerIOTopicReceipt" // topic to send message to
 //#define PAYLOAD     "Hello World!"
 #define QOS         1 // quality of service - 0 means fire and forget - change to suit speed needs
 #define TIMEOUT     10000L
