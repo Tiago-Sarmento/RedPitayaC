@@ -26,8 +26,8 @@
 
 //definde buffer properties
 const int BUF = 16*1024;
-const int N = 5000; 		// desired length of trace (1,..., 16383)
-const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536] select from defined values, see fpga_osc.h
+const int N = 500; 		// desired length of trace (1,..., 16383)
+const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536] select from defined values, see fpga_osc.h, each step is 5.12e-7seconds
 
 
 
@@ -138,10 +138,10 @@ int main(void)
 
 				}
 			// pulse failure defined by these conditions
-			if (counterA < 3000){
+			if (counterA < 300){
 				printf("failedA pulse\n");
 			} else{ printf("goodA pulse\n"); }
-			if (counterB < 3000){
+			if (counterB < 300){
 				printf("failedB pulse\n");
 			} else{ printf("goodB pulse\n");}
 			printf("counterA = %i\n",counterA);
@@ -160,6 +160,7 @@ int main(void)
 	// clean up
 	fclose(fp);
 	osc_fpga_exit();
+	printf("intentionally disconnecting MQTT\n");
 	mqtt_disconnect();
 	return 0;
 }
