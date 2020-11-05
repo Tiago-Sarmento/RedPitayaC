@@ -79,7 +79,7 @@ int main(void)
 			printf("trace count\n");
 			/*Set trigger, begin acquisition when condition is met*/
 			osc_fpga_arm_trigger(); //start acquiring, incrementing write pointer
-			osc_fpga_set_trigger(0x1); // where do you want your triggering from?
+			osc_fpga_set_trigger(0x6); // where do you want your triggering from?
 			/*    0 - end of acquisition/no acquisition
 			*     1 - trig immediately
 			*     2 - ChA positive edge 
@@ -112,24 +112,31 @@ int main(void)
 			int ptr;
 			int counterA = 0;
 			int counterB = 0;
+			int pulseA = 0;
+			int pulseA = 0;
 			for (i=0; i < N; i++) {
 				ptr = (trig_ptr+i)%BUF;
 				printf("cha value, %i \n", cha_signal[ptr]);
-				if (cha_signal[ptr]>=8192){ // properly display negative values fix
-					printf("%d ",cha_signal[ptr]-16384);
-					fprintf(fp, "%d, ", cha_signal[ptr]-16384);
+				// arc check
+				if (cha_signal[ptr]>=8192){ // these are negative points: 8192 to 16384 maps -10V to -0V
+					//printf("%d ",cha_signal[ptr]-16384);
+					//fprintf(fp, "%d, ", cha_signal[ptr]-16384);
 
 				}
-				else{ // points with value below 8192 are negative
-			   		printf("%d ",cha_signal[ptr]);
-					fprintf(fp, "%d, ", cha_signal[ptr]);;
-					if(fp > 500){//cha_signal[ptr] > 500){
+				else{ // points with value below 8192 are positive ( 0 to 8192 maps 0 to 10V
+			   		//printf("%d ",cha_signal[ptr]);
+					//fprintf(fp, "%d, ", cha_signal[ptr]);;
+					if(cha_signal[ptr] > 500){ 
 						counterA++;
 					}
 				}
+				// beam check
 				if (chb_signal[ptr]>=8192){ // properly display negative values fix
 					//        		printf("%d ",cha_signal[ptr]-16384);
 					//fprintf(fp, "%d\n", chb_signal[ptr]-16384);
+					if(chb_signal[ptr] > 500){
+						counterB++;
+					}
 				}
 				else{
 					//        		printf("%d ",cha_signal[ptr]);
@@ -141,16 +148,19 @@ int main(void)
 
 				}
 			// pulse failure defined by these conditions
-			if (counterA < 300){
+			if (counterA < 1000){
 				printf("failedA pulse\n");
-			} else{ printf("goodA pulse\n"); }
-			if (counterB < 300){
+			} else{ printf("goodA pulse\n"); pulseA = 1;}
+			if (counterB < 350){
 				printf("failedB pulse\n");
-			} else{ printf("goodB pulse\n");}
+			} else{ printf("goodB pulse\n"); pulseB = 1;}
 			printf("counterA = %i\n",counterA);
 			char payloadMain[100]; // allocate excessive memory to avoid memory problems
 			// sprintf copies string into variable
-			sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",counterA,(unsigned)time(NULL));
+			sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",pulseA,(unsigned)time(NULL));
+			sprintf(payload,"%d",counterA);
+			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
+						sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",pulseA,(unsigned)time(NULL));
 			sprintf(payload,"%d",counterA);
 			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
 			printf("counterB = %i\n",counterB);
