@@ -26,10 +26,13 @@
 
 //definde buffer properties
 const int BUF = 16*1024;
-const int N = 500; 		// desired length of trace (1,..., 16383)
-const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536] select from defined values, see fpga_osc.h, each step is 5.12e-7seconds
+const int N = 2000; 		// desired length of trace (1,..., 16383)
+const int decimation = 64; 	// decimation: [1;8;64;1024;8192;65536] select from defined values, see fpga_osc.h, 1.953 MS/s, https://redpitaya.readthedocs.io/en/latest/appsFeatures/examples/acqRF-samp-and-dec.html#s-rate-and-dec
 
-
+//base sample rate = 125 MS/s
+//actual sample rate = base sample rate/decimation = 1.953 MS/s
+//time between sample = 1/actual sample rate =  5.1203277e-7
+// duration of trace = time between sample * number of samples = 5.1203277e-7 * N = 1024us (N = 2000)
 
 int main(void) 
 {
@@ -111,7 +114,7 @@ int main(void)
 			int counterB = 0;
 			for (i=0; i < N; i++) {
 				ptr = (trig_ptr+i)%BUF;
-
+				printf("cha value, %i", cha_signal[ptr]);
 				if (cha_signal[ptr]>=8192){ // properly display negative values fix
 					//        		printf("%d ",cha_signal[ptr]-16384);
 					//fprintf(fp, "%d, ", cha_signal[ptr]-16384);
