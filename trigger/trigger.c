@@ -79,7 +79,7 @@ int main(void)
 			printf("trace count\n");
 			/*Set trigger, begin acquisition when condition is met*/
 			osc_fpga_arm_trigger(); //start acquiring, incrementing write pointer
-			osc_fpga_set_trigger(0x2); // where do you want your triggering from?
+			osc_fpga_set_trigger(0x1); // where do you want your triggering from?
 			/*    0 - end of acquisition/no acquisition
 			*     1 - trig immediately
 			*     2 - ChA positive edge 
@@ -116,14 +116,14 @@ int main(void)
 				ptr = (trig_ptr+i)%BUF;
 				printf("cha value, %i \n", cha_signal[ptr]);
 				if (cha_signal[ptr]>=8192){ // properly display negative values fix
-					//        		printf("%d ",cha_signal[ptr]-16384);
-					//fprintf(fp, "%d, ", cha_signal[ptr]-16384);
+					printf("%d ",cha_signal[ptr]-16384);
+					fprintf(fp, "%d, ", cha_signal[ptr]-16384);
 
 				}
 				else{ // points with value below 8192 are negative
-					//        		printf("%d ",cha_signal[ptr]);
-					//fprintf(fp, "%d, ", cha_signal[ptr]);;
-					if(cha_signal[ptr] > 500){
+			   		printf("%d ",cha_signal[ptr]);
+					fprintf(fp, "%d, ", cha_signal[ptr]);;
+					if(fp > 500){//cha_signal[ptr] > 500){
 						counterA++;
 					}
 				}
