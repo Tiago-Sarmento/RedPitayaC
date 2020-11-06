@@ -1,16 +1,5 @@
-// taken from https://github.com/Grozomah/trigger and adapted to use as failed pulse counter
+// Written by Tiago Sarmento in 2020. Most code was taken from https://github.com/Grozomah/trigger and adapted to use as failed pulse counter
 
-/**
- * $Id: trigger.c peter.ferjancic 2014/11/17 $
- *
- * @brief Red Pitaya triggered acquisition of multiple traces
- *
- * (c) Red Pitaya  http://www.redpitaya.com
- *
- * This part of code is written in C programming language.
- * Please visit http://en.wikipedia.org/wiki/C_(programming_language)
- * for more details on the language used herein.
- */
 
 #include <math.h>
 #include <stdio.h>
@@ -123,7 +112,7 @@ int main(void)
 					//fprintf(fp, "%d, ", cha_signal[ptr]-16384);
 
 				}
-				else{ // points with value below 8192 are positive ( 0 to 8192 maps 0 to 10V
+				else{ // points with value below 8192 are positive: 0 to 8192 maps 0 to 10V
 			   		//printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d, ", cha_signal[ptr]);;
 					if(cha_signal[ptr] > 500){ 
