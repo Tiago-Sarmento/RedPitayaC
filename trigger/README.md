@@ -11,6 +11,7 @@ Succesfully runs at 50Hz with 2 channels.
 ## Installation
 
 Red Pitaya must be running well. To set up from clean SD card read https://redpitaya.readthedocs.io/en/latest/quickStart/SDcard/SDcard.html
+Ensure a good power cable is connected - usb from computer may not provide enough current
 
 ssh into Red Pitaya https://redpitaya.readthedocs.io/en/latest/developerGuide/os/ssh/ssh.html
 
