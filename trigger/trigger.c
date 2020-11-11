@@ -63,6 +63,8 @@ int main(void)
 	for(twosecondloops=0; twosecondloops<20;twosecondloops++)
 	{
 		printf("two sec\n");
+		int failedCountA = 0;
+		int failedCountB = 0;
 		for (trace_counts=0; trace_counts<100; trace_counts++)
 		{
 			printf("trace count\n");
@@ -101,8 +103,7 @@ int main(void)
 			int ptr;
 			int counterA = 0;
 			int counterB = 0;
-			int failedCountA = 0;
-			int failedCountB = 0;
+
 			for (i=0; i < N; i++) {
 				ptr = (trig_ptr+i)%BUF;
 				printf("cha value, %i \n", cha_signal[ptr]);
@@ -157,11 +158,11 @@ int main(void)
 			printf("iteration = %i", trace_counts);
 			printf("time is = %u\n", (unsigned)time(NULL));
 		}
-	char payloadMain[100]; // allocate excessive memory to avoid memory problems	
-	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountA,(unsigned)time(NULL));
-	mqtt_sendA(payloadMain); // can run at 50Hz without interrupting script	
-	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountB,(unsigned)time(NULL));
-	mqtt_sendB(payloadMain); // can run at 50Hz without interrupting script	
+		char payloadMain[100]; // allocate excessive memory to avoid memory problems	
+		sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountA,(unsigned)time(NULL));
+		mqtt_sendA(payloadMain); // can run at 50Hz without interrupting script	
+		sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountB,(unsigned)time(NULL));
+		mqtt_sendB(payloadMain); // can run at 50Hz without interrupting script	
 	}
 	// clean up
 	fclose(fp);
