@@ -158,9 +158,9 @@ int main(void)
 			printf("time is = %u\n", (unsigned)time(NULL));
 		}
 	char payloadMain[100]; // allocate excessive memory to avoid memory problems	
-	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCounterA,(unsigned)time(NULL));
+	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountA,(unsigned)time(NULL));
 	mqtt_sendA(payloadMain); // can run at 50Hz without interrupting script	
-	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCounterB,(unsigned)time(NULL));
+	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountB,(unsigned)time(NULL));
 	mqtt_sendB(payloadMain); // can run at 50Hz without interrupting script	
 	}
 	// clean up
