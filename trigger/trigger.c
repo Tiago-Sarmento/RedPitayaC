@@ -101,8 +101,8 @@ int main(void)
 			int ptr;
 			int counterA = 0;
 			int counterB = 0;
-			int pulseA = 0;
-			int pulseA = 0;
+			int failedCountA = 0;
+			int failedCountB = 0;
 			for (i=0; i < N; i++) {
 				ptr = (trig_ptr+i)%BUF;
 				printf("cha value, %i \n", cha_signal[ptr]);
@@ -139,25 +139,29 @@ int main(void)
 			// pulse failure defined by these conditions
 			if (counterA < 1000){
 				printf("failedA pulse\n");
-			} else{ printf("goodA pulse\n"); pulseA = 1;}
+				failedCountA++;
+			} else{ printf("goodA pulse\n");}
 			if (counterB < 350){
 				printf("failedB pulse\n");
-			} else{ printf("goodB pulse\n"); pulseB = 1;}
+				failedCountB++;
+			} else{ printf("goodB pulse\n");}
 			printf("counterA = %i\n",counterA);
-			char payloadMain[100]; // allocate excessive memory to avoid memory problems
+			
 			// sprintf copies string into variable
-			sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",pulseA,(unsigned)time(NULL));
-			sprintf(payload,"%d",counterA);
-			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
-						sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",pulseA,(unsigned)time(NULL));
-			sprintf(payload,"%d",counterA);
-			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
+// 			sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",pulseA,(unsigned)time(NULL));
+// 			//sprintf(payload,"%d",counterA);
+// 			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
+			
 			printf("counterB = %i\n",counterB);
 			fprintf(fp, "\n");
 			printf("iteration = %i", trace_counts);
 			printf("time is = %u\n", (unsigned)time(NULL));
 		}
-		
+	char payloadMain[100]; // allocate excessive memory to avoid memory problems	
+	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCounterA,(unsigned)time(NULL));
+	mqtt_sendA(payloadMain); // can run at 50Hz without interrupting script	
+	sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCounterB,(unsigned)time(NULL));
+	mqtt_sendB(payloadMain); // can run at 50Hz without interrupting script	
 	}
 	// clean up
 	fclose(fp);
