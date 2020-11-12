@@ -106,7 +106,7 @@ int main(void)
 
 			for (i=0; i < N; i++) {
 				ptr = (trig_ptr+i)%BUF;
-				printf("cha value, %i \n", cha_signal[ptr]);
+				//printf("cha value, %i \n", cha_signal[ptr]);
 				// arc check
 				if (cha_signal[ptr]>=8192){ // these are negative points: 8192 to 16384 maps -10V to -0V
 					//printf("%d ",cha_signal[ptr]-16384);
