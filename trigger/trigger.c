@@ -139,21 +139,25 @@ int main(void)
 				}
 			// pulse failure defined by these conditions
 			if (counterA < 1000){
-				printf("failedA pulse\n");
+				//printf("failedA pulse\n");
 				failedCountA++;
-			} else{ printf("goodA pulse\n");}
+			} else{ 
+				//printf("goodA pulse\n");
+			}
 			if (counterB < 350){
-				printf("failedB pulse\n");
+				//printf("failedB pulse\n");
 				failedCountB++;
-			} else{ printf("goodB pulse\n");}
-			printf("counterA = %i\n",counterA);
+			} else{ 
+				//printf("goodB pulse\n");
+			}
+			//printf("counterA = %i\n",counterA);
 			
 			// sprintf copies string into variable
 // 			sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",pulseA,(unsigned)time(NULL));
 // 			//sprintf(payload,"%d",counterA);
 // 			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
 			
-			printf("counterB = %i\n",counterB);
+			//printf("counterB = %i\n",counterB);
 			fprintf(fp, "\n");
 			printf("iteration = %i", trace_counts);
 			printf("time is = %u\n", (unsigned)time(NULL));
