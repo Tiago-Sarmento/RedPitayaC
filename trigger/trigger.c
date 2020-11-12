@@ -1,5 +1,5 @@
 // Written by Tiago Sarmento in 2020. Most code was taken from https://github.com/Grozomah/trigger and adapted to use as failed pulse counter
-
+// Tested at 350 Hz by sending a known number of pulse from fgen and checking they are all counted. Including MQTT messaging
 
 #include <math.h>
 #include <stdio.h>
