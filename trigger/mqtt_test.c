@@ -38,13 +38,13 @@ void mqtt_disconnect(void)
 }
 
 
-int mqtt_sendA(char *message)
+int mqtt_sendAccA(char *message)
 {
     pubmsg.payload = message;
     pubmsg.payloadlen = strlen(message);
     pubmsg.qos = 0; // lowest quality of service ensures high speed messaging (0 - 'fire and forget') - set to 1 or 2 for higher assurangce
     pubmsg.retained = 0;
-    MQTTClient_publishMessage(client, TOPIC_A, &pubmsg, &token);
+    MQTTClient_publishMessage(client, TOPIC_A1, &pubmsg, &token);
     //printf("Waiting for up to %d seconds for publication of %s\n"
     //        "on topic %s for client with ClientID: %s\n",
     //        (int)(TIMEOUT/1000), payload, TOPIC, CLIENTID);
@@ -53,13 +53,42 @@ int mqtt_sendA(char *message)
     return rc;
 }
 
-int mqtt_sendB(char *message)
+int mqtt_sendIndA(char *message)
 {
     pubmsg.payload = message;
     pubmsg.payloadlen = strlen(message);
     pubmsg.qos = 0; // lowest quality of service ensures high speed messaging (0 - 'fire and forget') - set to 1 or 2 for higher assurangce
     pubmsg.retained = 0;
-    MQTTClient_publishMessage(client, TOPIC_B, &pubmsg, &token);
+    MQTTClient_publishMessage(client, TOPIC_A2, &pubmsg, &token);
+    //printf("Waiting for up to %d seconds for publication of %s\n"
+    //        "on topic %s for client with ClientID: %s\n",
+    //        (int)(TIMEOUT/1000), payload, TOPIC, CLIENTID);
+    //rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
+    //printf("Message with delivery token %d delivered\n", token);
+    return rc;
+}
+
+int mqtt_sendAcc_B(char *message)
+{
+    pubmsg.payload = message;
+    pubmsg.payloadlen = strlen(message);
+    pubmsg.qos = 0; // lowest quality of service ensures high speed messaging (0 - 'fire and forget') - set to 1 or 2 for higher assurangce
+    pubmsg.retained = 0;
+    MQTTClient_publishMessage(client, TOPIC_B1, &pubmsg, &token);
+    //printf("Waiting for up to %d seconds for publication of %s\n"
+    //        "on topic %s for client with ClientID: %s\n",
+    //        (int)(TIMEOUT/1000), payload, TOPIC, CLIENTID);
+    //rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
+    //printf("Message with delivery token %d delivered\n", token);
+    return rc;
+}
+int mqtt_sendInd_B(char *message)
+{
+    pubmsg.payload = message;
+    pubmsg.payloadlen = strlen(message);
+    pubmsg.qos = 0; // lowest quality of service ensures high speed messaging (0 - 'fire and forget') - set to 1 or 2 for higher assurangce
+    pubmsg.retained = 0;
+    MQTTClient_publishMessage(client, TOPIC_B2, &pubmsg, &token);
     //printf("Waiting for up to %d seconds for publication of %s\n"
     //        "on topic %s for client with ClientID: %s\n",
     //        (int)(TIMEOUT/1000), payload, TOPIC, CLIENTID);
