@@ -57,15 +57,18 @@ int main(void)
 	g_osc_fpga_reg_mem->cha_thr = osc_fpga_cnv_v_to_cnt(trigger_voltage); //sets trigger voltage
 
 	printf("entering loop\n");
+	char payloadMain[100]; // allocate excessive memory to avoid memory problems	
+	
 	/***************************/
 	/** MAIN ACQUISITION LOOP **/
 	/***************************/
 	for(twosecondloops=0; twosecondloops<20;twosecondloops++)
 	{
-		printf("two sec\n");
+		printf("one sec\n");
 		int failedCountA = 0;
 		int failedCountB = 0;
-		for (trace_counts=0; trace_counts<100; trace_counts++)
+		double fracTime=0;
+		for (trace_counts=0; trace_counts<50; trace_counts++)
 		{
 			printf("trace count\n");
 			/*Set trigger, begin acquisition when condition is met*/
@@ -103,6 +106,8 @@ int main(void)
 			int ptr;
 			int counterA = 0;
 			int counterB = 0;
+			int thisA = 0;
+			int thisB = 0;
 
 			for (i=0; i < N; i++) {
 				ptr = (trig_ptr+i)%BUF;
@@ -141,32 +146,39 @@ int main(void)
 			if (counterA < 1000){
 				//printf("failedA pulse\n");
 				failedCountA++;
+				thisA = 0;
 			} else{ 
 				//printf("goodA pulse\n");
+				thisA = 1;
 			}
 			if (counterB < 350){
 				//printf("failedB pulse\n");
 				failedCountB++;
+				thisB = 0;
 			} else{ 
 				//printf("goodB pulse\n");
+				thisB = 1;
 			}
 			//printf("counterA = %i\n",counterA);
 			
 			// sprintf copies string into variable
-// 			sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",pulseA,(unsigned)time(NULL));
-// 			//sprintf(payload,"%d",counterA);
+			sprintf(payloadMain,"{\"channel\": vespa::failed_ind_A, \"value\": %d, \"timestamp\": %u}",thisA,(unsigned)time(NULL)+ fracTime);
+			mqtt_sendIndA(payloadMain);	
+			sprintf(payloadMain,"{\"channel\": vespa::failed_ind_B, \"value\": %d, \"timestamp\": %u}",thisB,(unsigned)time(NULL)+ fracTime);
+			mqtt_sendIndB(payloadMain);
 // 			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
 			
 			//printf("counterB = %i\n",counterB);
 			fprintf(fp, "\n");
 			printf("iteration = %i", trace_counts);
 			printf("time is = %u\n", (unsigned)time(NULL));
+			fracTime = fracTime + 0.02;
 		}
-		char payloadMain[100]; // allocate excessive memory to avoid memory problems	
-		sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountA,(unsigned)time(NULL));
-		mqtt_sendA(payloadMain); // can run at 50Hz without interrupting script	
-		sprintf(payloadMain,"{\"messageid\": 1345, \"value\": %d, \"timestamp\": %u}",failedCountB,(unsigned)time(NULL));
-		mqtt_sendB(payloadMain); // can run at 50Hz without interrupting script	
+		
+		sprintf(payloadMain,"{\"channel\": vespa::failed_acc_A, \"value\": %d, \"timestamp\": %u}",failedCountA,(unsigned)time(NULL));
+		mqtt_sendAccA(payloadMain); // can run at 50Hz without interrupting script	
+		sprintf(payloadMain,"{\"channel\": vespa::failed_acc_B, \"value\": %d, \"timestamp\": %u}",failedCountB,(unsigned)time(NULL));
+		mqtt_sendAccB(payloadMain); // can run at 50Hz without interrupting script	
 	}
 	// clean up
 	fclose(fp);
