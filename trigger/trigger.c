@@ -132,16 +132,16 @@ int main(void)
 					//if(chb_signal[ptr] > 500){
 					//	counterB++;
 					//}
-					if(chb_signal[ptr] > 8192 + 200){
-						counterB++;
-					}
+					//if(chb_signal[ptr] > 8192 + 200){
+					//	counterB++;
+					//}
 				}
 				else{
 					//        		printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d\n", chb_signal[ptr]);;
-					//if(chb_signal[ptr] > 10){
-					//	counterB++;
-					//}
+					if(chb_signal[ptr] > 10){
+						counterB++;
+					}
 				}  
 
 				}
