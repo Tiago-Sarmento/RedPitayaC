@@ -121,7 +121,7 @@ int main(void)
 				else{ // points with value below 8192 are positive: 0 to 8192 maps 0 to 10V
 			   		//printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d, ", cha_signal[ptr]);;
-					if(cha_signal[ptr] > 500){ 
+					if(cha_signal[ptr] > 1600){ 
 						counterA++;
 					}
 				}
@@ -129,14 +129,14 @@ int main(void)
 				if (chb_signal[ptr]>=8192){ // properly display negative values fix
 					//        		printf("%d ",cha_signal[ptr]-16384);
 					//fprintf(fp, "%d\n", chb_signal[ptr]-16384);
-					if(chb_signal[ptr] > 500){
-						counterB++;
-					}
+					//if(chb_signal[ptr] > 500){
+					//	counterB++;
+					//}
 				}
 				else{
 					//        		printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d\n", chb_signal[ptr]);;
-					if(chb_signal[ptr] > 500){
+					if(chb_signal[ptr] > 1600){
 						counterB++;
 					}
 				}  
@@ -171,6 +171,8 @@ int main(void)
 			//printf("counterB = %i\n",counterB);
 			fprintf(fp, "\n");
 			printf("iteration = %i", trace_counts);
+			printf("A = %i", thisA);
+			printf("B = %i", thisB);
 			printf("time is = %u\n", (unsigned)time(NULL));
 			fracTime = fracTime + 0.02;
 		}
