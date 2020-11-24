@@ -68,7 +68,7 @@ int mqtt_sendIndA(char *message)
     return rc;
 }
 
-int mqtt_sendAcc_B(char *message)
+int mqtt_sendAccB(char *message)
 {
     pubmsg.payload = message;
     pubmsg.payloadlen = strlen(message);
@@ -82,7 +82,7 @@ int mqtt_sendAcc_B(char *message)
     //printf("Message with delivery token %d delivered\n", token);
     return rc;
 }
-int mqtt_sendInd_B(char *message)
+int mqtt_sendIndB(char *message)
 {
     pubmsg.payload = message;
     pubmsg.payloadlen = strlen(message);
