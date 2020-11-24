@@ -136,7 +136,7 @@ int main(void)
 				else{
 					//        		printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d\n", chb_signal[ptr]);;
-					if(chb_signal[ptr] > 400){
+					if(chb_signal[ptr] > 300){
 						counterB++;
 					}
 				}  
@@ -151,7 +151,7 @@ int main(void)
 				//printf("goodA pulse\n");
 				thisA = 1;
 			}
-			if (counterB < 350){
+			if (counterB < 100){
 				//printf("failedB pulse\n");
 				failedCountB++;
 				thisB = 0;
