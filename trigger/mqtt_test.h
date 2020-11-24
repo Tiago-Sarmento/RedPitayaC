@@ -15,5 +15,7 @@
 
 void mqtt_connect(void);
 void mqtt_disconnect(void);
-int mqtt_sendA(char *payload);
-int mqtt_sendB(char *payload);
+int mqtt_sendAccA(char *payload);
+int mqtt_sendIndA(char *payload);
+int mqtt_sendAccB(char *payload);
+int mqtt_sendIndB(char *payload);
