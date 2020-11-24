@@ -62,7 +62,8 @@ int main(void)
 	/***************************/
 	/** MAIN ACQUISITION LOOP **/
 	/***************************/
-	for(twosecondloops=0; twosecondloops<20;twosecondloops++)
+	//for(twosecondloops=0; twosecondloops<20;twosecondloops++)
+	while(True)
 	{
 		printf("one sec\n");
 		int failedCountA = 0;
