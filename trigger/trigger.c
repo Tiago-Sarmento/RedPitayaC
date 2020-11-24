@@ -176,6 +176,7 @@ int main(void)
 		}
 		
 		sprintf(payloadMain,"{\"channel\": vespa::failed_acc_A, \"value\": %d, \"timestamp\": %u}",failedCountA,(unsigned)time(NULL));
+		printf("count = %d", failedCountA);
 		mqtt_sendAccA(payloadMain); // can run at 50Hz without interrupting script	
 		sprintf(payloadMain,"{\"channel\": vespa::failed_acc_B, \"value\": %d, \"timestamp\": %u}",failedCountB,(unsigned)time(NULL));
 		mqtt_sendAccB(payloadMain); // can run at 50Hz without interrupting script	
