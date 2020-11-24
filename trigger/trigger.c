@@ -121,7 +121,7 @@ int main(void)
 				else{ // points with value below 8192 are positive: 0 to 8192 maps 0 to 10V
 			   		//printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d, ", cha_signal[ptr]);;
-					if(cha_signal[ptr] > 1600){ 
+					if(cha_signal[ptr] > 1000){ 
 						counterA++;
 					}
 				}
