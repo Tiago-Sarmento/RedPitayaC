@@ -162,9 +162,9 @@ int main(void)
 			//printf("counterA = %i\n",counterA);
 			
 			// sprintf copies string into variable
-			sprintf(payloadMain,"{\"channel\": vespa::failed_ind_A, \"value\": %d, \"timestamp\": %u}",thisA,(unsigned)time(NULL)+ fracTime);
+			sprintf(payloadMain,"{\"channel\": vespa::failed_ind_A, \"value\": %d, \"timestamp\": %f}",thisA,(unsigned)time(NULL)+ fracTime);
 			mqtt_sendIndA(payloadMain);	
-			sprintf(payloadMain,"{\"channel\": vespa::failed_ind_B, \"value\": %d, \"timestamp\": %u}",thisB,(unsigned)time(NULL)+ fracTime);
+			sprintf(payloadMain,"{\"channel\": vespa::failed_ind_B, \"value\": %d, \"timestamp\": %f}",thisB,(unsigned)time(NULL)+ fracTime);
 			mqtt_sendIndB(payloadMain);
 // 			mqtt_send(payloadMain); // can run at 50Hz without interrupting script
 			
