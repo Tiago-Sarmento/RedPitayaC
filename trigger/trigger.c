@@ -176,7 +176,7 @@ int main(void)
 			printf("iteration = %i", trace_counts);
 			printf("A = %i ", thisA);
 			printf("B = %i ", thisB);
-			printf("counterB = %i", counterB);
+			printf("counterA = %i", counterA);
 			printf("time is = %u\n", (unsigned)time(NULL));
 			fracTime = fracTime + 0.02;
 		}
