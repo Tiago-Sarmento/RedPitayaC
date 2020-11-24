@@ -5,10 +5,10 @@
 
 #define ADDRESS     "icxparrot.isis.rl.ac.uk" //"test.mosquitto.org"   // choose a mqtt broker, such as broker.hive.com
 #define CLIENTID    "ExampleClientPub" // unique identifier for the client, can be whatever you like
-#define TOPIC_A1    "isis/values/vespa/failed_acc_A" // accumulated count of failed pulses in 1 sec
-#define TOPIC_A2    "isis/values/vespa/failed_ind_A" // individual failed pulses
-#define TOPIC_B1    "isis/values/vespa/failed_acc_B" // same for second channel
-#define TOPIC_B2    "isis/values/vespa/failed_ind_B" // 
+#define TOPIC_A1    "/isis/values/vespa/failed_acc_A" // accumulated count of failed pulses in 1 sec
+#define TOPIC_A2    "/isis/values/vespa/failed_ind_A" // individual failed pulses
+#define TOPIC_B1    "/isis/values/vespa/failed_acc_B" // same for second channel
+#define TOPIC_B2    "/isis/values/vespa/failed_ind_B" // 
 //#define PAYLOAD     "Hello World!"
 #define QOS         1 // quality of service - 0 means fire and forget - change to suit speed needs
 #define TIMEOUT     10000L
