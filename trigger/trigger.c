@@ -136,7 +136,7 @@ int main(void)
 				else{
 					//        		printf("%d ",cha_signal[ptr]);
 					//fprintf(fp, "%d\n", chb_signal[ptr]);;
-					if(chb_signal[ptr] > 1600){
+					if(chb_signal[ptr] > 400){
 						counterB++;
 					}
 				}  
