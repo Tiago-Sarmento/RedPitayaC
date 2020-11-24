@@ -73,7 +73,7 @@ int main(void)
 			printf("trace count\n");
 			/*Set trigger, begin acquisition when condition is met*/
 			osc_fpga_arm_trigger(); //start acquiring, incrementing write pointer
-			osc_fpga_set_trigger(0x2); // where do you want your triggering from?
+			osc_fpga_set_trigger(0x6); // where do you want your triggering from?
 			/*    0 - end of acquisition/no acquisition
 			*     1 - trig immediately
 			*     2 - ChA positive edge 
@@ -171,8 +171,9 @@ int main(void)
 			//printf("counterB = %i\n",counterB);
 			fprintf(fp, "\n");
 			printf("iteration = %i", trace_counts);
-			printf("A = %i", thisA);
-			printf("B = %i", thisB);
+			printf("A = %i ", thisA);
+			printf("B = %i ", thisB);
+			printf("counterB = %i", counterB);
 			printf("time is = %u\n", (unsigned)time(NULL));
 			fracTime = fracTime + 0.02;
 		}
