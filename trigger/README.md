@@ -50,8 +50,10 @@ cd RedPitayaC/trigger
 
 gcc -o executable trigger.c fpga_osc.c mqtt_test.c -lm -lpaho-mqtt3c
 
-./executable
+./executable&
 ```
+This will run indefinitely, and will continue if the ssh window is closed. '&' in the last command indicates 'run in background'
+
 
 ## Basic Usage
 
