@@ -147,7 +147,7 @@ int main(void)
 
 				}
 			// pulse failure defined by these conditions
-			if (counterA < 1000){
+			if (counterA < 1150){
 				//printf("failedA pulse\n");
 				failedCountA++;
 				thisA = 0;
