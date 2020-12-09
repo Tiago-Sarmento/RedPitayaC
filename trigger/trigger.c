@@ -157,7 +157,7 @@ int main(void)
 				//printf("goodA pulse\n");
 				thisA = 1;
 			}
-			if (counterB < 100){
+			if (counterB < 200){
 				//printf("failedB pulse\n");
 				failedCountB++;
 				thisB = 0;
