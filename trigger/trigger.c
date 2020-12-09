@@ -1,6 +1,7 @@
 // Written by Tiago Sarmento in 2020. Most code was taken from https://github.com/Grozomah/trigger and adapted to use as failed pulse counter
 // Tested at 350 Hz by sending a known number of pulse from fgen and checking they are all counted. Including MQTT messaging
-// Over 600 us and 5.2V square passes
+// Over 600 us and 5.2V square passes arc count
+// Over 160 us and 400 mV square passes beam count
 
 
 #include <math.h>
